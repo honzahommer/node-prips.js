@@ -1,0 +1,49 @@
+{
+  "name": "prips.js",
+  "version": "0.0.0",
+  "description": "Prints IP subnet ranges by list or CIDR",
+  "main": "lib/prips.js",
+  "bin": {
+    "prips.js": "bin/prips.js"
+  },
+  "directories": {
+    "bin": "bin",
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "release:patch": "npm version patch",
+    "release:minor": "npm version minor",
+    "release:major": "npm version major",
+    "publish": "git push origin --tags && npm run changelog && git push origin",
+    "changelog": "github_changelog_generator && git add CHANGELOG.md && git commit -am \"Updating changelog\"",
+    "lint": "semistandard \"lib/**/*.js\" --fix",
+    "mocha": "mocha ./test/**/*.test.js",
+    "test": "npm run lint && nyc npm run mocha"
+  },
+  "keywords": [
+    "ip",
+    "prips"
+  ],
+  "repository": "honzahommer/node-prips.js",
+  "author": "Honza Hommer <honza@homer.cz>",
+  "homepage": "https://github.com/honzahommer/node-prips.js#README",
+  "license": "MIT",
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint"
+    }
+  },
+  "semistandard": {
+    "env": [
+      "mocha"
+    ]
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "husky": "^4.2.5",
+    "mocha": "^7.1.1",
+    "nyc": "^15.0.1",
+    "semistandard": "^14.2.0"
+  }
+}
